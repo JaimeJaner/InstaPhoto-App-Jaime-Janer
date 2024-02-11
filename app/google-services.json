@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "138539482104",
+    "project_id": "jaimejanersocialmediaapp",
+    "storage_bucket": "jaimejanersocialmediaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138539482104:android:aa5f1c9a83511f33fdf40d",
+        "android_client_info": {
+          "package_name": "com.example.jaimejanersocialmediaapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX4NzSHMkIF5FFhB2gY7pC7HWe8Y3KEGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
