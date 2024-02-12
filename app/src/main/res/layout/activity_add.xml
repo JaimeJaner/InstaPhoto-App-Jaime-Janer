@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="36dp"
-                android:text="Title"
+                android:hint="Title"
                 android:textSize="20sp"
                 android:fontFamily="@font/sixty_four"
                 android:textStyle="bold"
@@ -54,12 +54,13 @@
                 android:layout_marginHorizontal="22dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
-                android:text="Descripcion"
+                android:hint="Añade una descripción interesante"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
             <Button
+                android:id="@+id/btnPublicar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
