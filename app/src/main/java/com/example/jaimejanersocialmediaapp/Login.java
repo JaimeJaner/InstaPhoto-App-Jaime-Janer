@@ -33,6 +33,7 @@ public class Login extends AppCompatActivity {
         txtCrearCuenta = findViewById(R.id.txtCrearCuenta);
 
 
+        //Verificamos valores en campos de texto y ejecutamos.
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +46,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        //Si no tenemos cuenta, nos registamos, se abre la ventanaa de regisstro.
         txtCrearCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +64,10 @@ public class Login extends AppCompatActivity {
                         {
                             Toast.makeText(Login.this, "Ha iniciado sesión con éxito.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Login.this, MediaActiviy.class));
+                        }
+                        else
+                        {
+                            Toast.makeText(Login.this, "Datos de acceso inválidos.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

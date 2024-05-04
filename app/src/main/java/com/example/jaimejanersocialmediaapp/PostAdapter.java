@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
 
         holder.edtTitulo.setText(events.get(position).getTitulo());
         holder.edtDescripcion.setText(events.get(position).getDescripcion());
+        holder.txtDuenioHolder.setText(events.get(position).getDuenio());
     }
 
     @Override
@@ -47,12 +49,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     class PostHolder extends RecyclerView.ViewHolder{
 
         private EditText edtTitulo, edtDescripcion;
+        private TextView txtDuenioHolder;
 
         public PostHolder(@NonNull View itemView) {
             super(itemView);
 
             edtTitulo = itemView.findViewById(R.id.txtTitulo_rec);
             edtDescripcion = itemView.findViewById(R.id.txtDescripcion_rec);
+            txtDuenioHolder = itemView.findViewById(R.id.txtDuenio_rec);
         }
     }
 }

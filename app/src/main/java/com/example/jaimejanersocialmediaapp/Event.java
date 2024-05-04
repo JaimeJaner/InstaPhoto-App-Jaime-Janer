@@ -1,14 +1,15 @@
 package com.example.jaimejanersocialmediaapp;
 
 public class Event {
-    private String titulo, descripcion;
+    private String titulo, descripcion, duenio;
 
     public Event() {
     }
 
-    public Event(String titulo, String descripcion) {
+    public Event(String titulo, String descripcion, String duenio) {
         this.titulo = titulo;
         this.descripcion = descripcion;
+        this.duenio = duenio;
     }
 
     public String getTitulo() {
@@ -26,4 +27,8 @@ public class Event {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String getDuenio() { return duenio; }
+
+    public void setDuenio(String duenio) { this.duenio = duenio; }
 }

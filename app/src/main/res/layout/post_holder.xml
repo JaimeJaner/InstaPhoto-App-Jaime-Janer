@@ -32,6 +32,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
+            <TextView
+                android:id="@+id/txtDuenio_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="50dp"
+                android:fontFamily="@font/sixty_four"
+                android:text="Usuario:"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
+
             <EditText
                 android:id="@+id/txtTitulo_rec"
                 android:layout_width="match_parent"

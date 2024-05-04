@@ -13,8 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -27,7 +29,9 @@ public class MediaActiviy extends AppCompatActivity {
     private RecyclerView postRecView;
     private PostAdapter postAdapter;
 
+    //Array para almacenar los datos de los posts. (Eventos)
     private ArrayList<Event> events = new ArrayList<Event>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,7 @@ public class MediaActiviy extends AppCompatActivity {
         postRecView = findViewById(R.id.postRecview);
 
 
+        //Abre el espacio para crear un nuevo post.
         txtPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +52,7 @@ public class MediaActiviy extends AppCompatActivity {
             }
         });
 
+        //Cierra sesión.
         txtLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,24 +66,51 @@ public class MediaActiviy extends AppCompatActivity {
         imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Vamos a implementar la lógica para ver el perfil del usuario.
+                fetchUserEvents();
             }
         });
 
-        fetchEvents();
+        //En el OnCreate se ejecuta constantemente la actualización de los nuevos datos.
+        fetchUserEvents();
     }
 
-    private void fetchEvents() {
+    private void fetchUserEvents() {
+        // Verificar si hay un usuario autenticado
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            Toast.makeText(this, "No hay usuario autenticado", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, Login.class));
+            finish(); // Finalizar la actividad actual para evitar que el usuario vuelva a la pantalla anterior
+            return;
+        }
 
-        /*Recuperamos toda la información que hay de cada post de cada persona en Firebase*/
-        FirebaseDatabase.getInstance().getReference("post/").addListenerForSingleValueEvent(new ValueEventListener() {
+/*        // Obtenemos el UID del usuario.
+        String userId = currentUser.getUid();*/
+
+        // Obtenemos la dirección de los posts que han hecho todos los usuarios.
+        DatabaseReference userPostsRef = FirebaseDatabase.getInstance().getReference("post/");
+
+        // Escuchamos los cambios en los datos de cada usuario.
+        userPostsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                /*Iteramos la información obtenida y la transformamos en un objeto de la clase Event para poder añadirla a la lista Events que previamente creamos.
-                * y así poder utilizarla en el PostAdapter, que necesita información de una lista.*/
-                for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    events.add(snapshot1.getValue(Event.class));
+                // Verificar si hay datos disponibles en el snapshot
+                if (!snapshot.exists()) {
+                    Toast.makeText(MediaActiviy.this, "No hay posts en estos momentos.", Toast.LENGTH_SHORT).show();
+                    return; //Salimos del método para no procesar lo demás.
                 }
+
+                // Limpiar la lista de eventos antes de agregar nuevos eventos.
+                events.clear();
+
+                // Iterar sobre los posts
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    // Convertir cada post en un objeto Event y agregarlo a la lista
+                    events.add(postSnapshot.getValue(Event.class));
+                }
+
+                //Creamos un post adapter.
                 postAdapter = new PostAdapter(MediaActiviy.this, events);
                 postRecView.setLayoutManager(new LinearLayoutManager(MediaActiviy.this));
                 postRecView.setAdapter(postAdapter);
@@ -86,8 +119,10 @@ public class MediaActiviy extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                /*Nada acá.*/
+                // Manejar el error, si es necesario
+                Toast.makeText(MediaActiviy.this, "Error al obtener los post" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+    
 }

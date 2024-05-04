@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         txtIniciaSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Nos manda a la pantalla de Iniciar sesión, en caso de ya tener una cuenta.
                 startActivity(new Intent(MainActivity.this, Login.class));
             }
         });
@@ -78,21 +79,17 @@ public class MainActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
+                                                startActivity(new Intent(MainActivity.this, MediaActiviy.class));
 
+                                                Toast.makeText(MainActivity.this, "Has creado tu cuenta satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                                                finish();
+                                                /*Debido a que salió bien la operación, finalizamos procesos.*/
                                             }
                                             else{
                                                 Toast.makeText(MainActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
-                            /*Después de iniciar sesión queremos ir de una actividad a otra. O sea, de una pantalla a otra.
-                            * Para eso, es la siguiente línea de código, que toma como referencia la actividad que estamos realizando,
-                            * y pone en segundo parámetro a la actividad a abrir.*/
-
-                            startActivity(new Intent(MainActivity.this, MediaActiviy.class));
-
-                            Toast.makeText(MainActivity.this, "Iniciaste sesión correctamente.", Toast.LENGTH_SHORT).show();
-                            finish(); /*Debido a que salió bien la operación, finalizamos procesos.*/
                         }
                         else
                         {
