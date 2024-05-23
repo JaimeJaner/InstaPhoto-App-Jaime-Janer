@@ -37,9 +37,9 @@
             <EditText
                 android:id="@+id/txtTitulo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="40dp"
                 android:hint="Title"
                 android:textSize="20sp"
                 android:fontFamily="@font/sixty_four"
@@ -53,8 +53,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="50dp"
                 android:fontFamily="@font/sixty_four"
-                android:text="Usuario:"
-                android:textSize="15dp"
+                android:text="Usuario: "
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints" />
@@ -62,7 +62,7 @@
             <EditText
                 android:id="@+id/txtDescripcion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginHorizontal="22dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
