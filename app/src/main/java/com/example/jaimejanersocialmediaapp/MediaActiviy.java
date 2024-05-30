@@ -79,6 +79,12 @@ public class MediaActiviy extends AppCompatActivity {
         fetchUserEvents();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this, "Volviendo a la App", Toast.LENGTH_SHORT).show();
+    }
+
     private void fetchUserEvents() {
         // Verificar si hay un usuario autenticado
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();

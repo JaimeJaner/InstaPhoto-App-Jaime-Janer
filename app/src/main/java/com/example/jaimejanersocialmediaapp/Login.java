@@ -46,6 +46,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+
         //Si no tenemos cuenta, nos registamos, se abre la ventanaa de regisstro.
         txtCrearCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +54,12 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(Login.this, MainActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this, "Volviendo a la App", Toast.LENGTH_SHORT).show();
     }
 
     private void iniciarSesion() {

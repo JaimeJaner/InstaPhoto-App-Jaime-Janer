@@ -57,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this, "Volviendo a la App", Toast.LENGTH_SHORT).show();
+    }
+
     /*
      * Este método inicia sesión creando un nuevo usuario en Firebase Authentication
      * con la dirección de correo electrónico y contraseña proporcionadas en un formulario.
